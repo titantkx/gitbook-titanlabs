@@ -64,10 +64,10 @@ sudo apt-get install git-all
 
 ## Install Titan binary
 
-Let's clone Titan source code from [github](https://github.com/tokenize-titan/titan)
+Let's clone Titan source code from [github](https://github.com/tokenize-titan/titan). Please choose correct version tag via [upgrade-list.md](../../upgrade/upgrade-list.md "mention").
 
 ```sh
-git clone -b v2.0.1 https://github.com/titantkx/titan.git
+git clone -b <version_tag> https://github.com/titantkx/titan.git
 ```
 
 Build and install titand binary

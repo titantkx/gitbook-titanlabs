@@ -4,7 +4,7 @@
 Make sure you completed the [Installation](installation/from-source.md) step before following this session. You will also need knowledge about linux service file (systemd).
 {% endhint %}
 
-* Current Version: v2.0.1
+* Current Version: v3.0.0-rc.0
 * Chain ID: titan\_18889-1
 * Denom: atkx, tkx (1e18 atkx)
 * Endpoint: [testnet.md](../testnet.md "mention")
@@ -13,7 +13,7 @@ Make sure you completed the [Installation](installation/from-source.md) step bef
 
 ## Information
 
-The Titan testnet is currently running **titand** `v2.0.1`. Visit the [testnet explorer](https://testnet.tkxscan.io) to view real-time on-chain activity
+The Titan testnet is currently running **titand** `v3.0.0-rc.0`. Visit the [testnet explorer](https://testnet.tkxscan.io) to view real-time on-chain activity
 
 We recommend running public testnet nodes on a machine with at least two cores, 4GB of RAM, and 50GB of disk space.
 

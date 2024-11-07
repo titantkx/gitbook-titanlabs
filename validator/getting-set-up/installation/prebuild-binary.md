@@ -8,7 +8,7 @@ Instead of installing `titand` from the source code, the validator can use our p
 
 ### Download prebuild from github
 
-Find the latest release at [https://github.com/titantkx/titan/releases](https://github.com/titantkx/titan/releases) and download a suitable version for your machine.
+Find the latest release at [https://github.com/titantkx/titan/releases](https://github.com/titantkx/titan/releases) and download a suitable version for your machine. Please choose correct version from [upgrade-list.md](../../upgrade/upgrade-list.md "mention")
 
 Example: download v2.0.1 version for Linux with AMD processor
 
