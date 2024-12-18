@@ -4,7 +4,7 @@ You can find the genesis file in [the testnet repo](https://github.com/titantkx/
 
 Testnet endpoint information
 
-* Current Version: v2.0.1
+* Current Version: v3.0.0-rc.0
 * Chain ID: titan\_18889-1
 * Denom: atkx, tkx (1e18 atkx)
 * RPC endpoint:
