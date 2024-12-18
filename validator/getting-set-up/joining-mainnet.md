@@ -4,7 +4,7 @@
 Make sure you completed the [Installation](installation/from-source.md) step before following this session. You will also need knowledge about linux service file (systemd).
 {% endhint %}
 
-* Current Version: v2.0.1
+* Current Version: v3.0.0
 * Chain ID: titan\_18888-1
 * Denom: atkx, tkx (1e18 atkx)
 * Endpoint: [mainnet.md](../mainnet.md "mention")
@@ -12,7 +12,7 @@ Make sure you completed the [Installation](installation/from-source.md) step bef
 
 ## Information
 
-The Titan mainnet is currently running **titand** `v2.0.1`. Visit the [explorer](https://tkxscan.io/Titan) to view real-time on-chain activity
+The Titan mainnet is currently running **titand** `v3.0.0`. Visit the [explorer](https://tkxscan.io/Titan) to view real-time on-chain activity
 
 We recommend running public mainnet nodes on a machine with at least two cores, 8GB of RAM, and 100GB of disk space SSD.
 
