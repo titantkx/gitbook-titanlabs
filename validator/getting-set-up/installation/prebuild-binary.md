@@ -21,7 +21,7 @@ Instead of installing `titand` from the source code, the validator can use our p
 This hardware specification for the startup node reflects the current state of the blockchain. Over time, these requirements will increase based on the amount of data stored in the chain and the transaction load.
 {% endhint %}
 
-### Download prebuild from github
+## Download prebuild from github
 
 Find the latest release at [https://github.com/titantkx/titan/releases](https://github.com/titantkx/titan/releases) and download a suitable version for your machine. Please choose correct version from [upgrade-list.md](../../upgrade/upgrade-list.md "mention")
 
