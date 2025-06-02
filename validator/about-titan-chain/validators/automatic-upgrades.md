@@ -4,12 +4,12 @@ Cosmovisor is a process manager for Cosmos SDK applications, providing a mechani
 
 ## 1. Install Titand
 
-[Install `titand` ](../getting-set-up/installation/)
+[Install `titand` ](../developers/)
 
 ## 2. Install Cosmovisor
 
 {% hint style="info" %}
-To install Cosmovisor you also need to install Go ([guide](../getting-set-up/installation/from-source.md#install-go))
+To install Cosmovisor you also need to install Go ([guide](set-up-node/from-source.md#install-go))
 {% endhint %}
 
 Follow [the document of cosmos](https://docs.cosmos.network/main/build/tooling/cosmovisor) to install Cosmovisor
@@ -25,7 +25,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 ## 3. Init and config Node
 
-Follow [Joining Testnet](../getting-set-up/joining-testnet.md) until step [Create service file](../getting-set-up/joining-testnet.md#create-service-file).
+Follow [Joining Testnet](../developers/integrate-on-testnet.md) until step [Create service file](../developers/integrate-on-testnet.md#create-service-file).
 
 ## 4. Config Cosmovisor
 

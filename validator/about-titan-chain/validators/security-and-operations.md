@@ -6,7 +6,7 @@ The validator node must be kept running continuously, connect to other nodes and
 
 #### Monitoring
 
-Cometbft can export prometheus metrics to monitor node status ([https://docs.cometbft.com/v0.37/core/metrics](https://docs.cometbft.com/v0.37/core/metrics)). You should use it belong with [node exporter](https://github.com/prometheus/node\_exporter) to monitor node status.
+Cometbft can export prometheus metrics to monitor node status ([https://docs.cometbft.com/v0.37/core/metrics](https://docs.cometbft.com/v0.37/core/metrics)). You should use it belong with [node exporter](https://github.com/prometheus/node_exporter) to monitor node status.
 
 #### Chain upgrade
 
@@ -14,7 +14,7 @@ Every chain upgrade will require the validator download new `titand` binary to r
 
 You should always follow [titand github repo](https://github.com/titantkx/titan) for the latest release version. Main upgrades always be decided by [government proposal](https://tkxscan.io/Titan/gov).
 
-For automatic handle upgrade please follow this [guide](upgrade/automatic-upgrades.md).
+For automatic handle upgrade please follow this [guide](automatic-upgrades.md).
 
 ## Government responsibility
 

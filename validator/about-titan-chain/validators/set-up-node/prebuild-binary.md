@@ -1,3 +1,7 @@
+---
+description: You can also choose to use our prebuild binary.
+---
+
 # Prebuild binary
 
 {% hint style="warning" %}
@@ -23,7 +27,7 @@ This hardware specification for the startup node reflects the current state of t
 
 ## Download prebuild from github
 
-Find the latest release at [https://github.com/titantkx/titan/releases](https://github.com/titantkx/titan/releases) and download a suitable version for your machine. Please choose correct version from [upgrade-list.md](../../upgrade/upgrade-list.md "mention")
+Find the latest release at [https://github.com/titantkx/titan/releases](https://github.com/titantkx/titan/releases) and download a suitable version for your machine. Please choose correct version from [Broken link](broken-reference "mention")
 
 Example: download v2.0.1 version for Linux with AMD processor
 

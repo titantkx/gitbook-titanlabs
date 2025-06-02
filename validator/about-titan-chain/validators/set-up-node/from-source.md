@@ -1,6 +1,11 @@
-# From source
+---
+description: >-
+  This guide will explain how to build and install the Titand binary from source
+  code. Once installed on the server, you can now interact with the Titan Chain
+  testnet as a Full node or a Validator.
+---
 
-This guide will explain how to build and install the Titand binary from source code. Once installed on the server, you can now interact with the Titan Chain testnet as a Full node or a Validator.
+# From source
 
 {% hint style="warning" %}
 This guide uses Ubuntu. You will need knowledge about how golang and linux shell.
@@ -79,7 +84,7 @@ sudo apt-get install git-all
 
 ## Install Titan binary
 
-Let's clone Titan source code from [github](https://github.com/tokenize-titan/titan). Please choose correct version tag via [upgrade-list.md](../../upgrade/upgrade-list.md "mention").
+Let's clone Titan source code from [github](https://github.com/tokenize-titan/titan). Please choose correct version tag via [Broken link](broken-reference "mention").
 
 ```sh
 git clone -b <version_tag> https://github.com/titantkx/titan.git

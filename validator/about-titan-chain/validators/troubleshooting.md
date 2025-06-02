@@ -1,4 +1,12 @@
+---
+description: >-
+  This page will be regularly updated to reflect common issues that you may
+  encounter.
+---
+
 # 🐞 Troubleshooting
+
+
 
 <details>
 

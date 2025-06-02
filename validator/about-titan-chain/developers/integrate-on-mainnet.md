@@ -1,37 +1,36 @@
-# 🤼‍♂️ Joining Testnet
+# ⛓️ Integrate on Mainnet
 
 {% hint style="warning" %}
-Make sure you completed the [Installation](installation/from-source.md) step before following this session. You will also need knowledge about linux service file (systemd).
+Make sure you completed the [Installation](../validators/set-up-node/from-source.md) step before following this session. You will also need knowledge about linux service file (systemd).
 {% endhint %}
 
-* Current Version: v3.0.0-rc.0
-* Chain ID: titan\_18889-1
+* Current Version: v3.0.0
+* Chain ID: titan\_18888-1
 * Denom: atkx, tkx (1e18 atkx)
-* Endpoint: [testnet.md](../testnet.md "mention")
-* Faucet: [https://titan-testnet-faucet.titanlab.io](https://titan-testnet-faucet.titanlab.io)
-* Explorer: [https://testnet.tkxscan.io](https://testnet.tkxscan.io/)
+* Endpoint: [mainnet.md](../validators/become-a-mainnet-validator/mainnet.md "mention")
+* Explorer: [https://tkxscan.io](https://tkxscan.io/)
 
 ## Information
 
-The Titan testnet is currently running **titand** `v3.0.0-rc.0`. Visit the [testnet explorer](https://testnet.tkxscan.io) to view real-time on-chain activity
+The Titan mainnet is currently running **titand** `v3.0.0`. Visit the [explorer](https://tkxscan.io/Titan) to view real-time on-chain activity
 
-We recommend running public testnet nodes on a machine with at least two cores, 4GB of RAM, and 50GB of disk space.
+We recommend running public mainnet nodes on a machine with at least two cores, 8GB of RAM, and 100GB of disk space SSD.
 
 ## Installation & Configuration
 
 ### Init config file and data
 
 ```sh
-titand init <custom_moniker> --chain-id titan_18889-1
+titand init <custom_moniker>
 ```
 
-Now, a folder will be created by default in your HOME directory as `$HOME/.titand`. This folder will store all the configuration and data files of the node during operation.
+Now, a folder will be created by default in your HOME directory as `$HOME/.titan`. This folder will store all the configuration and data files of the node during operation.
 
-### Retrieve the genesis file of the Titan Chain testnet and store it in the config directory.
+### Retrieve the genesis file of the Titan Chain and store it in the config directory.
 
 ```sh
 cd $HOME
-curl -LO https://github.com/titantkx/titan-testnets/raw/main/public/genesis.json.gz
+curl -LO https://github.com/titantkx/titan-mainnet/raw/main/public/genesis.json.gz
 gzip -d genesis.json.gz
 mv genesis.json $HOME/.titand/config/genesis.json
 ```
@@ -41,20 +40,20 @@ mv genesis.json $HOME/.titand/config/genesis.json
 #### Set peers
 
 <pre class="language-sh"><code class="lang-sh">cd $HOME/.titand/config
-<strong>sed -i 's/seeds =.*/seeds = "1f61a190809e4413079174b6236bc00a502722b6@titan-testnet-node-1.titanlab.io:26656,c580270d0741f08d8ed88eda5d7de272622e7c02@titan-testnet-node-2.titanlab.io:26656,acb90d29636059abd5c4ca36f3731a69de73cf5b@titan-testnet-seed-1.titanlab.io:26656"/' config.toml
+<strong>sed -i 's/seeds =.*/seeds = "bee5ef5680cf90fe40d6cde872cdc52e53c8338d@titan-p2p-seed-1.titanlab.io:26656,a7e03c50f9b85ac2c9488d20913a37c2d1a9361c@titan-p2p-seed-1-seoul.titanlab.io:26656"/' config.toml
 </strong></code></pre>
 
 #### Config external address
 
-You will need to configure `external_address` in file `config.toml` is the external address of your node. Correct this config will allow other nodes in P2P network connect to your node.
+You will need to config `external_address` in file `config.toml` is external address of your node. Correct this config will allow other node in P2P network connect to your node.
 
 #### Index:
 
 {% hint style="info" %}
-In default, we disable all index and only keep 100 recent blocks to optimize the diskspace used by node.
+By default, we disable all indexes and only keep 100 recent blocks to optimize the diskspace used by node.
 {% endhint %}
 
-If you want to enable index, you need to change config in file `app.toml` and `config.toml`
+If you want to enable index, you need to change the config in file `app.toml` and `config.toml`
 
 * Ethereum transaction  (in `app.toml`)
 
@@ -87,16 +86,12 @@ indexer = "kv"
 ### Config state sync
 
 {% hint style="warning" %}
-If you use the latest binary version, this is required to sync data from blockchain. If you want to sync data from the genesis block, you must start syncing from genesis binary and follow [every upgrade in history](../upgrade/upgrade-list.md#testnet).
+If you use the latest binary version, this is required to sync data from blockchain. If you want to sync data from the genesis block, you must start syncing from genesis binary and follow [every upgrade in history](broken-reference).
 {% endhint %}
 
 Without this, your node will have to synchronize data from the genesis, which could take a considerable amount of time. Instead, we will search for snapshots from trusted peers at a specific height and then verify a minimal set of snapshot chunks against the network.
 
-Get the block height and block hash. First, you need to access the [explorer website](https://testnet.tkxscan.io) to obtain the nearest block height and its corresponding hash. We configure a node to take a snapshot every 1000 blocks and keep the 10 most recent snapshots. Therefore, the snapshot corresponding to the nearest block height will have the highest thousand value. For example, at the time of writing this guide testnet block height is `986922` so the nearest block height will be `986000`. Enter the block height in the search bar at the top of the website to retrieve its hash. The hash of Block `986000` is:&#x20;
-
-```
-BA8F33B927BE01087C66257EAEE302C3940F7C619A18F72C0EB7789A009B6839
-```
+Get the block height and block hash. First, you need to access the [explorer website](https://tkxscan.io/) to obtain the nearest block height and its corresponding hash. We configure a node to take a snapshot every 1000 blocks and keep the 10 most recent snapshots. Therefore, the snapshot corresponding to the nearest block height will have the highest thousand value. For example, at the time of writing this guide testnet block height is `37026` so the nearest block height will be `37000`. Enter the block height in the search bar at the top of the website to retrieve its hash. The hash of Block `37000` is:  `7240576BE8C737A4DA3849C2739143944F2D87C7E2A449A0949D03D1B72E878C`
 
 After having block height and block hash run the following command in order (replace `<BLOCK_HEIGHT>` and  `<BLOCK_HASH>` by the value you found in the above step)
 
@@ -109,13 +104,13 @@ cd $HOME/.titand/config
 sed -i 's/enable =.*/enable = true/' config.toml
 sed -i 's/trust_height =.*/trust_height = <BLOCK_HEIGHT>/' config.toml
 sed -i 's/trust_hash =.*/trust_hash = "<BLOCK_HASH>"/' config.toml
-sed -i 's/rpc_servers =.*/rpc_servers = "https:\/\/titan-testnet-rpc-1.titanlab.io:443,https:\/\/titan-testnet-rpc-2.titanlab.io:443"/' config.toml
+sed -i 's/rpc_servers =.*/rpc_servers = "https:\/\/titan-rpc-1.titanlab.io:443,https:\/\/titan-rpc-2.titanlab.io:443"/' config.toml
 ```
 
 ### Create Service File
 
 {% hint style="warning" %}
-To make the upgrade process as convenient as possible, instead of using `titand` binary directly we recommend you follow [this guide](../upgrade/automatic-upgrades.md) to use [`cosmovisor`](https://docs.cosmos.network/main/build/tooling/cosmovisor)
+To make the upgrade process as convenient as possible, instead of using `titand` binary directly we recommend you follow [this guide](../validators/automatic-upgrades.md) to use [`cosmovisor`](https://docs.cosmos.network/main/build/tooling/cosmovisor)
 {% endhint %}
 
 Get your absolute path of `titand`  binary and your HOME directory that contains `.titan` folder

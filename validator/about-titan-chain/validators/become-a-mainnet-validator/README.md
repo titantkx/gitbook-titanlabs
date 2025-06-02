@@ -1,16 +1,20 @@
-# 👮‍♂️ Become a Testnet Validator
+---
+description: >-
+  This section explains how you can operate a Mainnet validator node on Titan
+  Chain.
+---
+
+# 🚔 Become a Mainnet Validator
 
 ## Prepare your account
 
 * Create an account by [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap)
-* Go to [Explorer website](https://testnet.tkxscan.io) click `Sign in` button and use Keplr method. It then help add titan testnet network into Keplr
-* Get the test token from faucet [https://titan-testnet-faucet.titanlab.io/](https://titan-testnet-faucet.titanlab.io/). Copy and paste your wallet address that you previously created to receive testnet TKX tokens. (**NOTE: because min self delegate is 2048 TKX, to order to have enough TKX required for validator please contact us to receive a large amount of test TKX**)
-
-You now possess a test account with tkx token on Titan testnet, and it is ready for staking.
+* Go to the [Explorer website](https://tkxscan.io) click `Sign in` button and use Keplr method. It then help add titan testnet network into Keplr
+* **NOTE: because min self delegate is 2048 TKX, to order to become validator you need have at least 2048 TKX**
 
 ## Create your validator
 
-After creating a wallet with Keplr, you will now have a mnemonic (12 words/24 words) and a passphrase. We will proceed to import it into the node you created at step [joining-testnet.md](joining-testnet.md "mention").
+After creating a wallet with Keplr, you will now have a mnemonic (12 words/24 words) and a passphrase. We will proceed to import it into the node you created at step [integrate-on-mainnet.md](../../developers/integrate-on-mainnet.md "mention").
 
 Access to your node and import your wallet
 
@@ -27,16 +31,22 @@ Enter your 12-word mnemonic and passphrase. The output will appear as follows:
   type: local
 ```
 
-Make sure that the address matches the one displayed in Keplr.
+**NOTE: Make sure that the address matches the one displayed in Keplr.**
 
 ### Now it is time to create the validator
+
+Feel free to change parameters as yours will, or remove unnecessary infos (like, details, identity)
 
 ```
 titand tx staking create-validator \
   --amount=2048tkx \
   --pubkey=$(titand tendermint show-validator) \
   --moniker="choose a moniker" \
-  --chain-id=titan_18889-1 \
+  --website="Your website" \
+  --details="Yours very detail" \
+  --security-contact="your_email@email.com" \
+  --identity="your id on keybase"
+  --chain-id=titan_18888-1 \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
   --commission-max-change-rate="0.01" \
@@ -104,4 +114,12 @@ tx: null
 txhash: F348DF6D236C310A8D65234F73D51F3D84DE41DE511C417807A06407FB04A892
 ```
 
-Check the status of your transaction and your new validator at [explorer](https://testnet.tkxscan.io).
+Check the status of your transaction and your new validator at [Explorer](https://tkxscan.io).
+
+
+
+**NOTE: after success create your validator node, you may want to remove yours private key from machine for security**
+
+```
+titand keys delete my_wallet
+```
