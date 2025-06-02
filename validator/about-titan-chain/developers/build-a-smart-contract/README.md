@@ -14,8 +14,6 @@ You also need to have the `wasm32-unknown-unknown` target installed as well as t
 
 You can check versions via the following commands:
 
-Copy
-
 ```
 rustc --version
 cargo --version
@@ -29,11 +27,11 @@ cargo install cargo-generate
 #### Objectives <a href="#objectives" id="objectives"></a>
 
 * Create and interact with a smart contract that increases and resets a counter to a given value
-* Understand the basics of a CosmWasm smart contract, learn how to deploy it on Injective, and interact with it using Injective tools
+* Understand the basics of a CosmWasm smart contract, learn how to deploy it on Titan, and interact with it using Titan tools
 
 #### CosmWasm Contract Basics <a href="#cosmwasm-contract-basics" id="cosmwasm-contract-basics"></a>
 
-A smart contract can be considered an instance of a [singleton object](https://en.wikipedia.org/wiki/Singleton_pattern) whose internal state is persisted on the blockchain. Users can trigger state changes by sending the smart contract JSON messages, and users can also query its state by sending a request formatted as a JSON message. These JSON messages are different than Injective blockchain messages such as `MsgSend` and `MsgExecuteContract`.
+A smart contract can be considered an instance of a [singleton object](https://en.wikipedia.org/wiki/Singleton_pattern) whose internal state is persisted on the blockchain. Users can trigger state changes by sending the smart contract JSON messages, and users can also query its state by sending a request formatted as a JSON message. These JSON messages are different than Titan blockchain messages such as `MsgSend` and `MsgExecuteContract`.
 
 As a smart contract writer, your job is to define 3 functions that compose your smart contract's interface:
 
@@ -45,9 +43,7 @@ In our [sample counter contract](https://github.com/InjectiveLabs/cw-counter/blo
 
 #### Start with a Template <a href="#start-with-a-template" id="start-with-a-template"></a>
 
-In your working directory, quickly launch your smart contract with the recommended folder structure and build options by running the following commands:
-
-Copy
+In your working directory, quickly launch your smart contract with the recommended folder structure and build options by running the following commands
 
 ```
 cargo generate --git https://github.com/CosmWasm/cw-template.git --branch 1.0 --name my-first-contract
@@ -67,8 +63,6 @@ The [starting template](https://github.com/InjectiveLabs/cw-counter/blob/ea3b781
 * `count`, a 32-bit integer with which `execute()` messages will interact by increasing or resetting it.
 * `owner`, the sender `address` of the `MsgInstantiateContract`, which will determine if certain execution messages are permitted.
 
-Copy
-
 ```
 // src/state.rs
 use schemars::JsonSchema;
@@ -86,7 +80,7 @@ pub struct State {
 pub const STATE: Item<State> = Item::new("state");
 ```
 
-Injective smart contracts have the ability to keep persistent state through Injective's native LevelDB, a bytes-based key-value store. As such, any data you wish to persist should be assigned a unique key, which may be used to index and retrieve the data.
+Titan smart contracts have the ability to keep persistent state through Titan's native LevelDB, a bytes-based key-value store. As such, any data you wish to persist should be assigned a unique key, which may be used to index and retrieve the data.
 
 Data can only be persisted as raw bytes, so any notion of structure or data type must be expressed as a pair of serializing and deserializing functions. For instance, objects must be stored as bytes, so you must supply both the function that encodes the object into bytes to save it on the blockchain, as well as the function that decodes the bytes back into data types that your contract logic can understand. The choice of byte representation is up to you, so long as it provides a clean, bi-directional mapping.
 
@@ -101,7 +95,7 @@ Notice how the `State` struct holds both `count` and `owner`. In addition, the `
 * `PartialEq`: provides equality comparison
 * `JsonSchema`: auto-generates a JSON schema
 
-`Addr` refers to a human-readable Injective address prefixed with `inj`, e.g. `inj1clw20s2uxeyxtam6f7m84vgae92s9eh7vygagt`.
+`Addr` refers to a human-readable Titan address prefixed with `inj`, e.g. `inj1clw20s2uxeyxtam6f7m84vgae92s9eh7vygagt`.
 
 #### InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
 
@@ -109,13 +103,11 @@ You can learn more about CosmWasm [InstantiateMsg on their documentation](https:
 
 The `InstantiateMsg` is provided to the contract when a user instantiates a contract on the blockchain through a `MsgInstantiateContract`. This provides the contract with its configuration as well as its initial state.
 
-On the Injective blockchain, the uploading of a contract's code and the instantiation of a contract are regarded as separate events, unlike on Ethereum. This is to allow a small set of vetted contract archetypes to exist as multiple instances sharing the same base code, but be configured with different parameters (imagine one canonical ERC20, and multiple tokens that use its code).
+On the Titan blockchain, the uploading of a contract's code and the instantiation of a contract are regarded as separate events, unlike on Ethereum. This is to allow a small set of vetted contract archetypes to exist as multiple instances sharing the same base code, but be configured with different parameters (imagine one canonical ERC20, and multiple tokens that use its code).
 
 **Example**
 
 For your contract, the contract creator is expected to supply the initial state in a JSON message. We can see in the message definition below that the message holds one parameter `count`, which represents the initial count.
-
-Copy
 
 ```
 {
@@ -124,8 +116,6 @@ Copy
 ```
 
 **Message Definition**
-
-Copy
 
 ```
 // src/msg.rs
@@ -145,8 +135,6 @@ In `contract.rs`, you will define your first entry-point, `instantiate()`, or wh
 
 * `count` is assigned the count from the message
 * `owner` is assigned to the sender of the `MsgInstantiateContract`
-
-Copy
 
 ```
 // src/contract.rs
@@ -188,8 +176,6 @@ We have [two ExecuteMsg](https://github.com/InjectiveLabs/cw-counter/blob/59b9fe
 
 Any user can increment the current count by 1.
 
-Copy
-
 ```
 {
   "increment": {}
@@ -199,8 +185,6 @@ Copy
 **Reset**
 
 Only the owner can reset the count to a specific number. See Logic below for the implementation details.
-
-Copy
 
 ```
 {
@@ -214,8 +198,6 @@ Copy
 
 For `ExecuteMsg`, an `enum` can be used to multiplex over the different types of messages that your contract can understand. The `serde` attribute rewrites your attribute keys in snake case and lower case, so you'll have `increment` and `reset` instead of `Increment` and `Reset` when serializing and deserializing across JSON.
 
-Copy
-
 ```
 // src/msg.rs
 
@@ -228,8 +210,6 @@ pub enum ExecuteMsg {
 ```
 
 **Logic**
-
-Copy
 
 ```
 // src/contract.rs
@@ -250,8 +230,6 @@ pub fn execute(
 
 This is your `execute()` method, which uses Rust's pattern matching to route the received `ExecuteMsg` to the appropriate handling logic, either dispatching a `try_increment()` or a `try_reset()` call depending on the message received.
 
-Copy
-
 ```
 pub fn try_increment(deps: DepsMut) -> Result<Response, ContractError> {
     STATE.update(deps.storage, |mut state| -> Result<_, ContractError> {
@@ -264,8 +242,6 @@ pub fn try_increment(deps: DepsMut) -> Result<Response, ContractError> {
 ```
 
 First, it acquires a mutable reference to the storage to update the item located at key `state`. It then updates the state's count by returning an `Ok` result with the new state. Finally, it terminates the contract's execution with an acknowledgement of success by returning an `Ok` result with the `Response`.
-
-Copy
 
 ```
 // src/contract.rs
@@ -300,8 +276,6 @@ The template contract only supports one type of `QueryMsg`:
 
 The request:
 
-Copy
-
 ```
 {
   "get_count": {}
@@ -309,8 +283,6 @@ Copy
 ```
 
 Which should return:
-
-Copy
 
 ```
 {
@@ -323,8 +295,6 @@ Copy
 To support data queries in the contract, you'll have to define both a `QueryMsg` format (which represents requests), as well as provide the structure of the query's output—`CountResponse` in this case. You must do this because `query()` will send information back to the user through structured JSON, so you must make the shape of your response known. See Generating JSON Schema for more info.
 
 Add the following to your `src/msg.rs`:
-
-Copy
 
 ```
 // src/msg.rs
@@ -346,8 +316,6 @@ pub struct CountResponse {
 
 The logic for `query()` is similar to that of `execute()`; however, since `query()` is called without the end-user making a transaction, the `env` argument is omitted as no information is necessary.
 
-Copy
-
 ```
 // src/contract.rs
 
@@ -368,8 +336,6 @@ fn query_count(deps: Deps) -> StdResult<CountResponse> {
 
 Unit tests should be run as the first line of assurance before deploying the code on chain. They are quick to execute and can provide helpful backtraces on failures with the `RUST_BACKTRACE=1` flag:
 
-Copy
-
 ```
 cargo unit-test // run this with RUST_BACKTRACE=1 for helpful backtraces
 ```
@@ -379,8 +345,6 @@ You can find the [unit test implementation](https://github.com/InjectiveLabs/cw-
 #### Building the Contract <a href="#building-the-contract" id="building-the-contract"></a>
 
 Now that we understand and have tested the contract, we can run the following command to build the contract. This will check for any preliminary errors before we optimize the contract in the next step.
-
-Copy
 
 ```
 cargo wasm
@@ -392,8 +356,6 @@ Read more details on [preparing the Wasm bytecode for production](https://github
 
 CosmWasm has [rust-optimizer](https://github.com/CosmWasm/rust-optimizer), an optimizing compiler that can produce a small and consistent build output. The easiest method to use the tool is to use a published Docker image—check [here](https://hub.docker.com/r/cosmwasm/rust-optimizer/tags) for the latest x86 version, or [here](https://hub.docker.com/r/cosmwasm/rust-optimizer-arm64/tags) for the latest ARM version. With Docker running, run the following command to mount the contract code to `/code` and optimize the output (you can use an absolute path instead of `$(pwd)` if you don't want to `cd` to the directory first):
 
-Copy
-
 ```
 docker run --rm -v "$(pwd)":/code \
   --mount type=volume,source="$(basename "$(pwd)")_cache",target=/code/target \
@@ -402,8 +364,6 @@ docker run --rm -v "$(pwd)":/code \
 ```
 
 If you're on an ARM64 machine, you should use a docker image built for ARM64:
-
-Copy
 
 ```
 docker run --rm -v "$(pwd)":/code \
@@ -415,8 +375,6 @@ docker run --rm -v "$(pwd)":/code \
 CosmWasm does not recommend using the ARM64 version of the compiler because it produces different Wasm artifacts from the Intel/AMD version. For release/production, only contracts built with Intel/AMD optimizers are recommended for use. See [here](https://github.com/CosmWasm/rust-optimizer#notice) for the note from CosmWasm.
 
 You may receive an `` Unable to update registry `crates-io` `` error while running the command. Try adding the following lines to the `Cargo.toml` file located within the contract directory and running the command again:
-
-Copy
 
 ```
 [net]
@@ -439,8 +397,6 @@ If you install `injectived` from the binary, ignore the docker commands. On the 
 
 Executing this command will make the docker container execute indefinitely.
 
-Copy
-
 ```
 docker run --name="injective-core-staging" \
 -v=<directory_to_which_you_cloned_cw-template>/artifacts:/var/artifacts \
@@ -452,15 +408,11 @@ Note: `directory_to_which_you_cloned_cw-template` must be an absolute path. The 
 
 Open a new terminal and go into the Docker container to initialize the chain:
 
-Copy
-
 ```
 docker exec -it injective-core-staging sh
 ```
 
 Let’s start by adding `jq` dependency, which will be needed later on:
-
-Copy
 
 ```
 # inside the "injective-core-staging" container
@@ -469,16 +421,12 @@ apk add jq
 
 Now we can proceed to local chain initialization and add a test user called `testuser` (when prompted use 12345678 as password). We will only use the test user to generate a new private key that will later on be used to sign messages on the testnet:
 
-Copy
-
 ```
 # inside the "injective-core-staging" container
 injectived keys add testuser
 ```
 
 **OUTPUT**
-
-Copy
 
 ```
 - name: testuser
@@ -495,8 +443,6 @@ wash wise evil buffalo fiction quantum planet dial grape slam title salt dry and
 
 Take a moment to write down the address or export it as an env variable, as you will need it to proceed:
 
-Copy
-
 ```
 # inside the "injective-core-staging" container
 export INJ_ADDRESS= <your inj address>
@@ -510,8 +456,6 @@ To confirm, search for your address on the [Injective Testnet Explorer](https://
 
 Alternatively, you can verify it by [querying the bank balance](https://sentry.testnet.lcd.injective.network/swagger/#/Query/AllBalances) or with curl:
 
-Copy
-
 ```
 curl -X GET "https://sentry.testnet.lcd.injective.network/cosmos/bank/v1beta1/balances/<your_INJ_address>" -H "accept: application/json"
 ```
@@ -519,8 +463,6 @@ curl -X GET "https://sentry.testnet.lcd.injective.network/cosmos/bank/v1beta1/ba
 ### Upload the Wasm Contract <a href="#upload-the-wasm-contract" id="upload-the-wasm-contract"></a>
 
 Now it's time to upload the `.wasm` file that you compiled in the previous steps to the Injective Testnet. Please note that the procedure for mainnet is different and [requires a governance proposal.](https://docs.injective.network/developers/cosmwasm-developers/guides/mainnet-deployment)
-
-Copy
 
 ```
 # inside the "injective-core-staging" container, or from the contract directory if running injectived locally
@@ -532,8 +474,6 @@ yes 12345678 | injectived tx wasm store artifacts/my_first_contract.wasm \
 ```
 
 **Output:**
-
-Copy
 
 ```
 code: 0
@@ -551,9 +491,7 @@ tx: null
 txhash: 912458AA8E0D50A479C8CF0DD26196C49A65FCFBEEB67DF8A2EA22317B130E2C
 ```
 
-Check your address on the [Injective Testnet Explorer](https://testnet.explorer.injective.network/), and look for a transaction with the `txhash` returned from storing the code on chain. The transaction type should be `MsgStoreCode`.
-
-You can see all stored codes on Injective Testnet under [Code](https://testnet.explorer.injective.network/codes/).
+Check your address on the Titan [Testnet Explorer](https://testnet.tkxscan.io/), and look for a transaction with the `txhash` returned from storing the code on chain. The transaction type should be `MsgStoreCode`.
 
 There are different ways to find the code that you just stored:
 
@@ -562,15 +500,11 @@ There are different ways to find the code that you just stored:
 
 To query the transaction use the `txhash` and verify the contract was deployed.
 
-Copy
-
 ```
 injectived query tx 912458AA8E0D50A479C8CF0DD26196C49A65FCFBEEB67DF8A2EA22317B130E2C --node=https://testnet.sentry.tm.injective.network:443
 ```
 
 Inspecting the output more closely, we can see the `code_id` of `290` for the uploaded contract:
-
-Copy
 
 ```
 - events:
@@ -600,8 +534,6 @@ Copy
 
 Let's export your `code_id` as an ENV variable—we'll need it to instantiate the contract. You can skip this step and manually add it later, but keep note of the ID.
 
-Copy
-
 ```
 export CODE_ID= <code_id of your stored contract>
 ```
@@ -611,8 +543,6 @@ export CODE_ID= <code_id of your stored contract>
 While the Wasm calls `instantiate`, `execute`, and `query` accept JSON, this is not enough information to use them. We need to expose the schema for the expected messages to the clients.
 
 In order to make use of JSON-schema auto-generation, you should register each of the data structures that you need schemas for.
-
-Copy
 
 ```
 // examples/schema.rs
@@ -641,8 +571,6 @@ fn main() {
 
 The schemas can then be generated with
 
-Copy
-
 ```
 cargo schema
 ```
@@ -661,8 +589,6 @@ Reminder On CosmWasm, the upload of a contract's code and the instantiation of a
 
 To instantiate the contract, run the following CLI command with the code\_id you got in the previous step, along with the [JSON encoded initialization arguments](https://github.com/InjectiveLabs/cw-counter/blob/ea3b781447a87f052e4b8308d5c73a30481ed61f/schema/cw-counter.json#L7) and a label (a human-readable name for this contract in lists).
 
-Copy
-
 ```
 INIT='{"count":99}'
 yes 12345678 | injectived tx wasm instantiate $CODE_ID $INIT \
@@ -676,8 +602,6 @@ yes 12345678 | injectived tx wasm instantiate $CODE_ID $INIT \
 ```
 
 **Output:**
-
-Copy
 
 ```
 code: 0
@@ -701,8 +625,6 @@ You can find the contract address and metadata by:
 * Querying the [ContractsByCode](https://k8s.testnet.lcd.injective.network/swagger/#/Query/ContractsByCode) and [ContractInfo](https://k8s.testnet.lcd.injective.network/swagger/#/Query/ContractInfo) APIs
 * Querying through the CLI
 
-Copy
-
 ```
 injectived query wasm contract inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlcpv8n7 --node=https://testnet.sentry.tm.injective.network:443
 ```
@@ -710,8 +632,6 @@ injectived query wasm contract inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlcpv8n7 --node
 #### Querying the Contract <a href="#querying-the-contract" id="querying-the-contract"></a>
 
 As we know from earlier, the only QueryMsg we have is `get_count`.
-
-Copy
 
 ```
 GET_COUNT_QUERY='{"get_count":{}}'
@@ -721,8 +641,6 @@ injectived query wasm contract-state smart inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlc
 ```
 
 **Output:**
-
-Copy
 
 ```
 {"data":{"count":99}}
@@ -736,8 +654,6 @@ If you query the same contract, you may receive a different response as others m
 
 Let's now interact with the contract by incrementing the counter.
 
-Copy
-
 ```
 INCREMENT='{"increment":{}}'
 yes 12345678 | injectived tx wasm execute inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlcpv8n7 "$INCREMENT" --from=$(echo $INJ_ADDRESS) \
@@ -749,8 +665,6 @@ yes 12345678 | injectived tx wasm execute inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlcp
 
 If we query the contract for the count, we see:
 
-Copy
-
 ```
 {"data":{"count":100}}
 ```
@@ -758,8 +672,6 @@ Copy
 **yes 12345678 |** automatically pipes (passes) the passphrase to the input of **injectived tx wasm execute** so you do not need to enter it manually.
 
 To reset the counter:
-
-Copy
 
 ```
 RESET='{"reset":{"count":999}}'
@@ -772,8 +684,6 @@ yes 12345678 | injectived tx wasm execute inj1ady3s7whq30l4fx8sj3x6muv5mx4dfdlcp
 ```
 
 Now, if we query the contract again, we see the count has been reset to the provided value:
-
-Copy
 
 ```
 {"data":{"count":999}}
@@ -792,8 +702,6 @@ The `BankMsg::Send` message allows the contract to transfer tokens to another ad
 #### Constructing the Message <a href="#constructing-the-message" id="constructing-the-message"></a>
 
 You can construct a `BankMsg::Send` message within your contract's `execute` function. This message requires specifying the recipient address and the amount to send. Here's an example of how to construct this message:
-
-Copy
 
 ```
 use cosmwasm_std::{BankMsg, Coin, Response, MessageInfo};
@@ -817,8 +725,6 @@ pub fn try_send(
 
 In your contract, you can add a new variant to your ExecuteMsg enum to handle this bank send functionality. For example:
 
-Copy
-
 ```
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
@@ -829,8 +735,6 @@ pub enum ExecuteMsg {
 ```
 
 Then, in the `execute` function, you can add a case to handle this message:
-
-Copy
 
 ```
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -851,6 +755,6 @@ pub fn execute(
 
 As with other smart contract functions, you should add unit tests to ensure your bank send functionality works as expected. This includes testing different scenarios, such as sending various token amounts and handling errors correctly.
 
-You may use [test-tube](https://github.com/InjectiveLabs/test-tube) for running integration tests that include a local Injective chain.
+You may use [test-tube](https://github.com/InjectiveLabs/test-tube) for running integration tests that include a local Titan chain.
 
-Congratulations! You've created and interacted with your first Injective smart contract and now know how to get started with CosmWasm development on Injective. Continue to Creating a Frontend for Your Contract for a guide on creating a web UI.
+Congratulations! You've created and interacted with your first Titan smart contract and now know how to get started with CosmWasm development on Titan. Continue to Creating a Frontend for Your Contract for a guide on creating a web UI.
