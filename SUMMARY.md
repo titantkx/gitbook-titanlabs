@@ -8,7 +8,7 @@
     * [Token Standards](validator/about-titan-chain/getting-started/token-standards.md)
     * [Transactions](validator/about-titan-chain/getting-started/transactions.md)
   * [🧑‍🤝‍🧑 Users](validator/about-titan-chain/users/README.md)
-    * [Page 1](validator/about-titan-chain/users/page-1.md)
+    * [✍️ Quickstart](validator/about-titan-chain/users/quickstart.md)
   * [🚒 Developers](validator/about-titan-chain/developers/README.md)
     * [👨‍💻 Build a Smart Contract](validator/about-titan-chain/developers/build-a-smart-contract/README.md)
       * [Local Development](validator/about-titan-chain/developers/build-a-smart-contract/local-development/README.md)

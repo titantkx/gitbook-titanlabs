@@ -11,8 +11,6 @@ description: >-
 
 Untitled Wallet is the official wallet for Titan Chain, offering native support and optimized features for the Titan ecosystem.
 
-[https://tkxwallet.com/en/auth?next=%2Fhome](https://tkxwallet.com/en/auth?next=%2Fhome "mention")
-
 Create a wallet via social login (email) to interact with dApps on Titan Chain.
 
 ## Cosmo-based Wallets
