@@ -29,3 +29,13 @@ Alternatively, you can use [Keplr](https://www.keplr.app/).
 ### 3. Explore the Ecosystem
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+Once you have created a wallet with [Untitled](https://tkxwallet.com/), explore our dApps here:
+
+[Native DEX](https://hyperiondex.com/) | Hyperion
+
+Native Perp DEX | Aicolyte \[TBA]
+
+[Native Bridge](https://powerflow.asia/bridge) | Powerflow
+
+[Block Explorer](https://tkxscan.io/) | TKX Scan
