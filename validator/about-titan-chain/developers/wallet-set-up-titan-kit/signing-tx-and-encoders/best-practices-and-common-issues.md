@@ -1,12 +1,6 @@
----
-description: >-
-  This page will be regularly updated to reflect best practices and common
-  issues that you may encounter when deploying Titan Kit.
----
+# Best Practices and Common Issues
 
-# Best Practice & Common Issues
-
-### Best Practices <a href="#best-practices" id="best-practices"></a>
+## Best Practices
 
 1. **Wallet Usage**
    * Import wallet instance directly (e.g., untitledWallet)
@@ -28,7 +22,7 @@ description: >-
    * Validate message parameters before sending
    * Include all required fields in messages
 
-### Common Issues <a href="#common-issues" id="common-issues"></a>
+## Common Issues
 
 1. **Wallet Configuration**
    * Error: "Wallet not properly configured"

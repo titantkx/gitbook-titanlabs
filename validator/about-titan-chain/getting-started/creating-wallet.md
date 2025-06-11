@@ -3,6 +3,17 @@ description: >-
   Untitled Wallet allows you to monitor your assets on Titan. Assets can be
   native tokens on Titan, or bridged assets from Ethereum, Solana, or other
   IBC-enabled chains.
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # Creating Wallet

@@ -1,14 +1,8 @@
----
-description: >-
-  Please find the relevant message types you may require for wallet integration
-  below. The Module list is regularly updated.
----
+# Available Message Types
 
-# Wallet Module
+## Bank Module
 
-#### Bank Module <a href="#bank-module" id="bank-module"></a>
-
-```
+```typescript
 import { 
   MsgSend,
   MsgMultiSend,
@@ -16,9 +10,9 @@ import {
 } from '@titanlabjs/titan-types/cosmos/bank/v1beta1/tx';
 ```
 
-#### Staking Module <a href="#staking-module" id="staking-module"></a>
+## Staking Module
 
-```
+```typescript
 import {
   MsgDelegate,
   MsgUndelegate,
@@ -27,9 +21,9 @@ import {
 } from '@titanlabjs/titan-types/cosmos/staking/v1beta1/tx';
 ```
 
-#### Distribution Module <a href="#distribution-module" id="distribution-module"></a>
+## Distribution Module
 
-```
+```typescript
 import {
   MsgWithdrawDelegatorReward,
   MsgWithdrawValidatorCommission,
@@ -38,9 +32,9 @@ import {
 } from '@titanlabjs/titan-types/cosmos/distribution/v1beta1/tx';
 ```
 
-#### Governance Module <a href="#governance-module" id="governance-module"></a>
+## Governance Module
 
-```
+```typescript
 import {
   MsgSubmitProposal,
   MsgVote,
@@ -49,9 +43,9 @@ import {
 } from '@titanlabjs/titan-types/cosmos/gov/v1beta1/tx';
 ```
 
-#### CosmWasm Module <a href="#cosmwasm-module" id="cosmwasm-module"></a>
+## CosmWasm Module
 
-```
+```typescript
 import {
   MsgExecuteContract,
   MsgInstantiateContract,
