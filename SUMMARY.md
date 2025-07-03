@@ -79,3 +79,7 @@
     * [🤖 Automatic Upgrades](validator/about-titan-chain/validators/automatic-upgrades.md)
     * [🔐 Security and Operations](validator/about-titan-chain/validators/security-and-operations.md)
     * [🐞 Troubleshooting](validator/about-titan-chain/validators/troubleshooting.md)
+
+***
+
+* [References](references.md)
