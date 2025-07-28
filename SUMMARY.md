@@ -76,6 +76,7 @@
       * [🩺 Testnet](validator/about-titan-chain/validators/become-a-testnet-validator/testnet.md)
     * [🚔 Become a Mainnet Validator](validator/about-titan-chain/validators/become-a-mainnet-validator/README.md)
       * [💹 Mainnet](validator/about-titan-chain/validators/become-a-mainnet-validator/mainnet.md)
+    * [📒 Upgrade list](validator/about-titan-chain/validators/upgrade-list.md)
     * [🤖 Automatic Upgrades](validator/about-titan-chain/validators/automatic-upgrades.md)
     * [🔐 Security and Operations](validator/about-titan-chain/validators/security-and-operations.md)
     * [🐞 Troubleshooting](validator/about-titan-chain/validators/troubleshooting.md)

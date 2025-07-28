@@ -1,0 +1,10 @@
+# 📒 Upgrade list
+
+## Mainnet
+
+<table><thead><tr><th>Version</th><th data-type="checkbox">Breaking Changed</th><th>Manual Upgrade Only</th><th>Height</th></tr></thead><tbody><tr><td><a href="https://app.gitbook.com/o/GmIGGbN867mvv4pToBAv/s/nY9gfwjbYpW5DOTj5kl3/"><strong>v2.0.1</strong></a></td><td>false</td><td></td><td><a href="https://titan-explorer-light.titanlab.io/Titan/block/1">1</a></td></tr><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v3.0.0"><strong>v3.0.0</strong></a></td><td>true</td><td></td><td><a href="https://tkxscan.io/Titan/gov/1">4176482</a></td></tr></tbody></table>
+
+## Testnet
+
+<table><thead><tr><th>Version</th><th data-type="checkbox">Breaking Changed</th><th>Manual Upgrade Only</th><th>Height</th></tr></thead><tbody><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v1.0.0"><strong>v1.0.0</strong></a></td><td>false</td><td></td><td><a href="https://titan-testnet-explorer-light.titanlab.io/Titan%20Testnet/block/1">1</a></td></tr><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v2.0.0"><strong>v2.0.0</strong></a></td><td>true</td><td></td><td><a href="https://titan-testnet-explorer-light.titanlab.io/Titan%20Testnet/block/727408">727408</a></td></tr><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v2.0.1"><strong>v2.0.1</strong></a></td><td>false</td><td></td><td><a href="https://titan-testnet-explorer-light.titanlab.io/Titan%20Testnet/block/967678">967678</a></td></tr><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v3.0.0-rc.0"><strong>v3.0.0-rc.0</strong></a></td><td>true</td><td></td><td><a href="https://testnet.tkxscan.io/Titan%20Testnet/block/4416064">4416064</a></td></tr><tr><td><a href="https://github.com/titantkx/titan/releases/tag/v4.0.0-rc.0"><strong>v4.0.0-rc.0</strong></a></td><td>true</td><td></td><td><a href="https://testnet.tkxscan.io/Titan%20Testnet/block/8733300">8733300</a></td></tr></tbody></table>
+
